@@ -97,7 +97,7 @@ pipeline {
         stage('Kubernetes deploy') {
             agent { label 'KOPS' }
             steps {
-                withEnv(["KUBECONFIG=/opt/jenkins-slave/.kube/config"]) {
+                withEnv(["KUBECONFIG=/home/ubuntu/.kube/config"]) {
                     sh """
                     helm upgrade --install --force vprofile-stack helm/vprofilecharts \
                         --set appimage=${registry}:V${BUILD_NUMBER} --namespace prod
