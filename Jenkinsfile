@@ -1,11 +1,7 @@
 pipeline {
 
     agent any
-/*
-	tools {
-        maven "maven3"
-    }
-*/
+
     environment {
         registry = "salata123/vproappdock"
         registryCredentials = "dockerhub"
@@ -75,7 +71,9 @@ pipeline {
 
         stage('Build Docker App Image') {
             steps {
-                dockerImage = docker.build registry + ":V$BUILD_NUMBER"
+                script{
+                    dockerImage = docker.build registry + ":V$BUILD_NUMBER"
+                }
             }
         }
 
